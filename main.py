@@ -57,6 +57,18 @@ def main():
                 run = False
                 break
 
+        if pygame.mouse.get_pressed()[0]:
+            pos = pygame.mouse.get_pos()
+            if pos[0] >= rowA_X - 3*STICK_WIDTH_SPACE and pos[0] <= (WIDTH+STICK_WIDTH)/2 + 3*STICK_WIDTH_SPACE:
+                if pos[1] >= rowA_Y and pos[1] <= rowA_Y + STICK_HEIGHT:
+                    print("rowA:", pos)
+                elif pos[1] >= rowB_Y and pos[1] <= rowB_Y + STICK_HEIGHT:
+                    print("rowB:", pos)
+                elif pos[1] >= rowC_Y and pos[1] <= rowC_Y + STICK_HEIGHT:
+                    print("rowC:", pos)
+                elif pos[1] >= rowD_Y and pos[1] <= rowD_Y + STICK_HEIGHT:
+                    print("rowD:", pos)
+
         draw(rowA, rowB, rowC, rowD)
 
     pygame.quit()
