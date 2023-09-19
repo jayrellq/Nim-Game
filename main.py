@@ -51,23 +51,24 @@ def main():
         rowD_X += STICK_WIDTH_SPACE
 
     while run:
-        # check if window is closed
         for event in pygame.event.get():
+            # check if window is closed
             if event.type == pygame.QUIT:
                 run = False
                 break
-
-        if pygame.mouse.get_pressed()[0]:
-            pos = pygame.mouse.get_pos()
-            if pos[0] >= rowA_X - 3*STICK_WIDTH_SPACE and pos[0] <= (WIDTH+STICK_WIDTH)/2 + 3*STICK_WIDTH_SPACE:
-                if pos[1] >= rowA_Y and pos[1] <= rowA_Y + STICK_HEIGHT:
-                    print("rowA:", pos)
-                elif pos[1] >= rowB_Y and pos[1] <= rowB_Y + STICK_HEIGHT:
-                    print("rowB:", pos)
-                elif pos[1] >= rowC_Y and pos[1] <= rowC_Y + STICK_HEIGHT:
-                    print("rowC:", pos)
-                elif pos[1] >= rowD_Y and pos[1] <= rowD_Y + STICK_HEIGHT:
-                    print("rowD:", pos)
+            # check for mouse clicks
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                pos = pygame.mouse.get_pos()
+                
+                if pos[0] >= rowA_X - 3*STICK_WIDTH_SPACE and pos[0] <= (WIDTH+STICK_WIDTH)/2 + 3*STICK_WIDTH_SPACE:
+                    if pos[1] >= rowA_Y and pos[1] <= rowA_Y + STICK_HEIGHT and len(rowA) >= 1:
+                        rowA.pop(0)
+                    elif pos[1] >= rowB_Y and pos[1] <= rowB_Y + STICK_HEIGHT and len(rowB) >= 1:
+                        rowB.pop(0)
+                    elif pos[1] >= rowC_Y and pos[1] <= rowC_Y + STICK_HEIGHT and len(rowC) >= 1:
+                        rowC.pop(0)
+                    elif pos[1] >= rowD_Y and pos[1] <= rowD_Y + STICK_HEIGHT and len(rowD) >= 1:
+                        rowD.pop(0)
 
         draw(rowA, rowB, rowC, rowD)
 
