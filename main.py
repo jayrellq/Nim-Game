@@ -20,18 +20,18 @@ def draw(rowA, rowB, rowC, rowD):
 def createRow(numSticks):
     row = []
     row_X_start = (WIDTH-STICK_WIDTH)/2 - (((numSticks-1)/2) * STICK_WIDTH_SPACE)
-    row_X_end = row_X_start
+    row_X_start_temp = row_X_start
     row_Y_start = 75 + (((numSticks-1)/2) * STICK_HEIGHT_SPACE)
 
     for i in range(numSticks):
-        stick = pygame.Rect(row_X_end, row_Y_start, STICK_WIDTH, STICK_HEIGHT)
+        stick = pygame.Rect(row_X_start, row_Y_start, STICK_WIDTH, STICK_HEIGHT)
         row.append(stick)
-        row_X_end += STICK_WIDTH_SPACE
+        row_X_start += STICK_WIDTH_SPACE
 
-    row_X_end = row_X_end - STICK_WIDTH_SPACE + STICK_WIDTH # remove the added spacing at the end and add stick width
+    row_X_end = row_X_start - STICK_WIDTH_SPACE + STICK_WIDTH # remove the added spacing at the end and add stick width
     row_Y_end = row_Y_start + STICK_HEIGHT
 
-    return row, row_X_start, row_X_end, row_Y_start, row_Y_end
+    return row, row_X_start_temp, row_X_end, row_Y_start, row_Y_end
 
 def main():
     run = True
