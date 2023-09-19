@@ -5,6 +5,7 @@ WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("The Game of Nim")
 
 STICK_WIDTH, STICK_HEIGHT = 10, 50
+STICK_WIDTH_SPACE, STICK_HEIGHT_SPACE = 50, 75
 
 def draw(rowA, rowB, rowC, rowD):
     WINDOW.fill("gray") # change background color
@@ -21,29 +22,33 @@ def main():
 
     rowA = []
     rowA_X = (WIDTH - STICK_WIDTH) / 2
-    stick = pygame.Rect(rowA_X, 75, STICK_WIDTH, STICK_HEIGHT)
+    rowA_Y = 75
+    stick = pygame.Rect(rowA_X, rowA_Y, STICK_WIDTH, STICK_HEIGHT)
     rowA.append(stick)
 
     rowB = []
-    rowB_X = rowA_X - 50
+    rowB_X = rowA_X - STICK_WIDTH_SPACE
+    rowB_Y = rowA_Y + STICK_HEIGHT_SPACE
     for i in range(3):
-        stick = pygame.Rect(rowB_X, 150, STICK_WIDTH, STICK_HEIGHT)
+        stick = pygame.Rect(rowB_X, rowB_Y, STICK_WIDTH, STICK_HEIGHT)
         rowB.append(stick)
-        rowB_X += 50
+        rowB_X += STICK_WIDTH_SPACE
     
     rowC = []
-    rowC_X = rowA_X - 100
+    rowC_X = rowA_X - 2*STICK_WIDTH_SPACE
+    rowC_Y = rowA_Y + 2*STICK_HEIGHT_SPACE
     for i in range(5):
-        stick = pygame.Rect(rowC_X, 225, STICK_WIDTH, STICK_HEIGHT)
+        stick = pygame.Rect(rowC_X, rowC_Y, STICK_WIDTH, STICK_HEIGHT)
         rowC.append(stick)
-        rowC_X += 50
+        rowC_X += STICK_WIDTH_SPACE
     
     rowD = []
-    rowD_X = rowA_X - 150
+    rowD_X = rowA_X - 3*STICK_WIDTH_SPACE
+    rowD_Y = rowA_Y + 3*STICK_HEIGHT_SPACE
     for i in range(7):
-        stick = pygame.Rect(rowD_X, 300, STICK_WIDTH, STICK_HEIGHT)
+        stick = pygame.Rect(rowD_X, rowD_Y, STICK_WIDTH, STICK_HEIGHT)
         rowD.append(stick)
-        rowD_X += 50
+        rowD_X += STICK_WIDTH_SPACE
 
     while run:
         # check if window is closed
