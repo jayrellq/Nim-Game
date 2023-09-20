@@ -5,7 +5,7 @@ class Row():
     def __init__(self, numSticks, X, Y):
         self.arr = []
         self.numSticks = numSticks
-        self.Xstart = X - (((self.numSticks-1)/2) * STICK_WIDTH_SPACE)
+        self.Xstart = X - (((numSticks-1)/2) * STICK_WIDTH_SPACE)
         self.Xend = self.Xstart
         self.Ystart = Y + (((numSticks-1)/2) * STICK_HEIGHT_SPACE)
         self.Yend = self.Ystart
