@@ -17,6 +17,7 @@ def draw(rows):
 def main():
     run = True
 
+    # initialize and create the rows
     rowA = row.Row(1, (WIDTH-STICK_WIDTH)/2, 75)
     rowB = row.Row(3, (WIDTH-STICK_WIDTH)/2, 75)
     rowC = row.Row(5, (WIDTH-STICK_WIDTH)/2, 75)

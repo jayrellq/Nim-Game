@@ -1,4 +1,6 @@
+# display dimensions
 WIDTH, HEIGHT = 600, 400
 
+# stick properties
 STICK_WIDTH, STICK_HEIGHT = 10, 50
 STICK_WIDTH_SPACE, STICK_HEIGHT_SPACE = 50, 75

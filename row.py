@@ -10,6 +10,7 @@ class Row():
         self.Ystart = Y + (((numSticks-1)/2) * STICK_HEIGHT_SPACE)
         self.Yend = self.Ystart
 
+    # create the sticks for the row
     def create(self):
         for i in range(self.numSticks):
             stick = pygame.Rect(self.Xend, self.Ystart, STICK_WIDTH, STICK_HEIGHT)
