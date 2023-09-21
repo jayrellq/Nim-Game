@@ -9,6 +9,7 @@ class Button():
         self.height = height
         self.rect = pygame.Rect(X, Y, width, height)
 
+    # check if button is clicked
     def click(self, pos):
         clicked = False
 

@@ -35,9 +35,13 @@ def main():
     rows = [rowA.arr, rowB.arr, rowC.arr, rowD.arr]
 
     # initialize and create the buttons
+    AButton = button.Button(rowD.Xstart - 100, rowA.Ystart, STICK_HEIGHT, STICK_HEIGHT)
+    BButton = button.Button(rowD.Xstart - 100, rowB.Ystart, STICK_HEIGHT, STICK_HEIGHT)
+    CButton = button.Button(rowD.Xstart - 100, rowC.Ystart, STICK_HEIGHT, STICK_HEIGHT)
+    DButton = button.Button(rowD.Xstart - 100, rowD.Ystart, STICK_HEIGHT, STICK_HEIGHT)
     passButton = button.Button(rowD.Xend + 50, rowD.Ystart, STICK_HEIGHT, STICK_HEIGHT)
     helpButton = button.Button(rowD.Xend + 50, rowA.Ystart, STICK_HEIGHT, STICK_HEIGHT)
-    buttons = [passButton.rect, helpButton.rect]
+    buttons = [AButton.rect, BButton.rect, CButton.rect, DButton.rect, passButton.rect, helpButton.rect]
 
     while run:
         for event in pygame.event.get():
@@ -49,18 +53,14 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
                 
-                if pos[0] >= rowA.Xstart and pos[0] <= rowA.Xend:
-                    if pos[1] >= rowA.Ystart and pos[1] <= rowA.Yend and rowA.numSticks >= 1:
-                        rowA.remove()
-                if pos[0] >= rowB.Xstart and pos[0] <= rowB.Xend:
-                    if pos[1] >= rowB.Ystart and pos[1] <= rowB.Yend and rowB.numSticks >= 1:
-                        rowB.remove()
-                if pos[0] >= rowC.Xstart and pos[0] <= rowC.Xend:
-                    if pos[1] >= rowC.Ystart and pos[1] <= rowC.Yend and rowC.numSticks >= 1:
-                        rowC.remove()
-                if pos[0] >= rowD.Xstart and pos[0] <= rowD.Xend:
-                    if pos[1] >= rowD.Ystart and pos[1] <= rowD.Yend and rowD.numSticks >= 1:
-                        rowD.remove()
+                if AButton.click(pos) and rowA.numSticks >= 1:
+                    rowA.remove()
+                if BButton.click(pos) and rowB.numSticks >= 1:
+                    rowB.remove()
+                if CButton.click(pos) and rowC.numSticks >= 1:
+                    rowC.remove()
+                if DButton.click(pos) and rowD.numSticks >= 1:
+                    rowD.remove()
 
                 if passButton.click(pos):
                     print("here")
