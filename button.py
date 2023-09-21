@@ -6,4 +6,14 @@ class Button():
         self.X = X
         self.Y = Y
         self.width = width
-        self.heigh = height
+        self.height = height
+        self.rect = pygame.Rect(X, Y, width, height)
+
+    def click(self, pos):
+        clicked = False
+
+        if pos[0] >= self.X and pos[0] <= self.X + self.width:
+            if pos[1] >= self.Y and pos[1] <= self.Y + self.height:
+                clicked = True
+
+        return clicked
