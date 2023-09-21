@@ -8,8 +8,15 @@ pygame.init()
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("The Game of Nim")
 
-def draw(rows, buttons):
+FONT = pygame.font.SysFont("timesnewroman", 30)
+
+def draw(rows, buttons, player):
     WINDOW.fill("gray") # change background color
+
+    # display whose turn is it
+    turnPlayer = FONT.render(f"Player {int(player)}'s Turn", 1, "black")
+    turnPlayerRect = turnPlayer.get_rect(center=(WIDTH/2, 30))
+    WINDOW.blit(turnPlayer, turnPlayerRect)
 
     for row in rows:
         for stick in row:
@@ -23,6 +30,7 @@ def draw(rows, buttons):
 def main():
     run = True
     currRow = "None"
+    player = 1
 
     # initialize and create the rows
     rowA = row.Row(1, (WIDTH-STICK_WIDTH)/2, 75)
@@ -66,11 +74,13 @@ def main():
                     rowD.removeStick()
                     currRow = "D"
 
-                if passButton.click():
+                # pass turn to other player
+                if passButton.click() and currRow != "None":
                     currRow = "None"
+                    player = 2 if player == 1 else 1
 
         totalSticks = rowA.numSticks + rowB.numSticks + rowC.numSticks + rowD.numSticks
-        draw(rows, buttons)
+        draw(rows, buttons, player)
 
     pygame.quit()
 
