@@ -10,7 +10,8 @@ class Button():
         self.rect = pygame.Rect(X, Y, width, height)
 
     # check if button is clicked
-    def click(self, pos):
+    def click(self):
+        pos = pygame.mouse.get_pos()
         clicked = False
 
         if pos[0] >= self.X and pos[0] <= self.X + self.width:

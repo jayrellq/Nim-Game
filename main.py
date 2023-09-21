@@ -52,22 +52,21 @@ def main():
                 break
             # check for mouse clicks
             if event.type == pygame.MOUSEBUTTONDOWN:
-                pos = pygame.mouse.get_pos()
-                
-                if AButton.click(pos) and rowA.numSticks >= 1 and (currRow == "None" or currRow == "A"):
+                # remove stick from row buttons
+                if AButton.click() and rowA.numSticks >= 1 and (currRow == "None" or currRow == "A"):
                     rowA.removeStick()
                     currRow = "A"
-                if BButton.click(pos) and rowB.numSticks >= 1 and (currRow == "None" or currRow == "B"):
+                if BButton.click() and rowB.numSticks >= 1 and (currRow == "None" or currRow == "B"):
                     rowB.removeStick()
                     currRow = "B"
-                if CButton.click(pos) and rowC.numSticks >= 1 and (currRow == "None" or currRow == "C"):
+                if CButton.click() and rowC.numSticks >= 1 and (currRow == "None" or currRow == "C"):
                     rowC.removeStick()
                     currRow = "C"
-                if DButton.click(pos) and rowD.numSticks >= 1 and (currRow == "None" or currRow == "D"):
+                if DButton.click() and rowD.numSticks >= 1 and (currRow == "None" or currRow == "D"):
                     rowD.removeStick()
                     currRow = "D"
 
-                if passButton.click(pos):
+                if passButton.click():
                     currRow = "None"
 
         totalSticks = rowA.numSticks + rowB.numSticks + rowC.numSticks + rowD.numSticks

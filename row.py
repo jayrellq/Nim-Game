@@ -2,12 +2,12 @@ import pygame
 from variables import *
 
 class Row():
-    def __init__(self, numSticks, X, Y):
+    def __init__(self, numSticks, Xmid, Ytop):
         self.arr = []
         self.numSticks = numSticks
-        self.Xstart = X - (((numSticks-1)/2) * STICK_WIDTH_SPACE)
+        self.Xstart = Xmid - (((numSticks-1)/2) * STICK_WIDTH_SPACE)
         self.Xend = self.Xstart
-        self.Ystart = Y + (((numSticks-1)/2) * STICK_HEIGHT_SPACE)
+        self.Ystart = Ytop + (((numSticks-1)/2) * STICK_HEIGHT_SPACE)
         self.Yend = self.Ystart
 
     # create the sticks for the row
@@ -17,7 +17,7 @@ class Row():
             self.arr.append(stick)
             self.Xend += STICK_WIDTH_SPACE
 
-        self.Xend = self.Xend - STICK_WIDTH_SPACE + STICK_WIDTH # remove the added spacing at the end and add stick width
+        self.Xend = self.Xend - STICK_WIDTH_SPACE + STICK_WIDTH # remove added spacing at end and add stick width
         self.Yend = self.Yend + STICK_HEIGHT
 
     # remove a stick from the row
