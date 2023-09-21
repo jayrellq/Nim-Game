@@ -19,3 +19,7 @@ class Row():
 
         self.Xend = self.Xend - STICK_WIDTH_SPACE + STICK_WIDTH # remove the added spacing at the end and add stick width
         self.Yend = self.Yend + STICK_HEIGHT
+
+    def remove(self):
+        self.arr.pop(0)
+        self.numSticks -= 1
