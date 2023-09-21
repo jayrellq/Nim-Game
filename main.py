@@ -22,6 +22,7 @@ def draw(rows, buttons):
 
 def main():
     run = True
+    currRow = "None"
 
     # initialize and create the rows
     rowA = row.Row(1, (WIDTH-STICK_WIDTH)/2, 75)
@@ -53,17 +54,21 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
                 
-                if AButton.click(pos) and rowA.numSticks >= 1:
+                if AButton.click(pos) and rowA.numSticks >= 1 and (currRow == "None" or currRow == "A"):
                     rowA.removeStick()
-                if BButton.click(pos) and rowB.numSticks >= 1:
+                    currRow = "A"
+                if BButton.click(pos) and rowB.numSticks >= 1 and (currRow == "None" or currRow == "B"):
                     rowB.removeStick()
-                if CButton.click(pos) and rowC.numSticks >= 1:
+                    currRow = "B"
+                if CButton.click(pos) and rowC.numSticks >= 1 and (currRow == "None" or currRow == "C"):
                     rowC.removeStick()
-                if DButton.click(pos) and rowD.numSticks >= 1:
+                    currRow = "C"
+                if DButton.click(pos) and rowD.numSticks >= 1 and (currRow == "None" or currRow == "D"):
                     rowD.removeStick()
+                    currRow = "D"
 
                 if passButton.click(pos):
-                    print("here")
+                    currRow = "None"
 
         totalSticks = rowA.numSticks + rowB.numSticks + rowC.numSticks + rowD.numSticks
         draw(rows, buttons)
