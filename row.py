@@ -11,7 +11,7 @@ class Row():
         self.Yend = self.Ystart
 
     # create the sticks for the row
-    def create(self):
+    def createRow(self):
         for i in range(self.numSticks):
             stick = pygame.Rect(self.Xend, self.Ystart, STICK_WIDTH, STICK_HEIGHT)
             self.arr.append(stick)
@@ -21,6 +21,6 @@ class Row():
         self.Yend = self.Yend + STICK_HEIGHT
 
     # remove a stick from the row
-    def remove(self):
+    def removeStick(self):
         self.arr.pop(0)
         self.numSticks -= 1

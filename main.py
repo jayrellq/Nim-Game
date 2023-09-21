@@ -28,10 +28,10 @@ def main():
     rowB = row.Row(3, (WIDTH-STICK_WIDTH)/2, 75)
     rowC = row.Row(5, (WIDTH-STICK_WIDTH)/2, 75)
     rowD = row.Row(7, (WIDTH-STICK_WIDTH)/2, 75)
-    rowA.create()
-    rowB.create()
-    rowC.create()
-    rowD.create()
+    rowA.createRow()
+    rowB.createRow()
+    rowC.createRow()
+    rowD.createRow()
     rows = [rowA.arr, rowB.arr, rowC.arr, rowD.arr]
 
     # initialize and create the buttons
@@ -54,13 +54,13 @@ def main():
                 pos = pygame.mouse.get_pos()
                 
                 if AButton.click(pos) and rowA.numSticks >= 1:
-                    rowA.remove()
+                    rowA.removeStick()
                 if BButton.click(pos) and rowB.numSticks >= 1:
-                    rowB.remove()
+                    rowB.removeStick()
                 if CButton.click(pos) and rowC.numSticks >= 1:
-                    rowC.remove()
+                    rowC.removeStick()
                 if DButton.click(pos) and rowD.numSticks >= 1:
-                    rowD.remove()
+                    rowD.removeStick()
 
                 if passButton.click(pos):
                     print("here")
