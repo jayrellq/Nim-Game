@@ -19,11 +19,12 @@ def draw(rows, buttons, player):
     WINDOW.blit(turnPlayer, turnPlayerRect)
 
     for row in rows:
-        for stick in row:
+        for stick in row.arr:
             pygame.draw.rect(WINDOW, "brown", stick)
 
     for button in buttons:
-        pygame.draw.rect(WINDOW, "black", button)
+        pygame.draw.rect(WINDOW, "black", button.rect)
+        WINDOW.blit(button.text, button.textRect)
 
     pygame.display.update() # refresh display to update any drawings
 
@@ -41,16 +42,16 @@ def main():
     rowB.createRow()
     rowC.createRow()
     rowD.createRow()
-    rows = [rowA.arr, rowB.arr, rowC.arr, rowD.arr]
+    rows = [rowA, rowB, rowC, rowD]
 
     # initialize and create the buttons
-    AButton = button.Button(rowD.Xstart - 100, rowA.Ystart, STICK_HEIGHT, STICK_HEIGHT)
-    BButton = button.Button(rowD.Xstart - 100, rowB.Ystart, STICK_HEIGHT, STICK_HEIGHT)
-    CButton = button.Button(rowD.Xstart - 100, rowC.Ystart, STICK_HEIGHT, STICK_HEIGHT)
-    DButton = button.Button(rowD.Xstart - 100, rowD.Ystart, STICK_HEIGHT, STICK_HEIGHT)
-    passButton = button.Button(rowD.Xend + 50, rowD.Ystart, STICK_HEIGHT, STICK_HEIGHT)
-    helpButton = button.Button(rowD.Xend + 50, rowA.Ystart, STICK_HEIGHT, STICK_HEIGHT)
-    buttons = [AButton.rect, BButton.rect, CButton.rect, DButton.rect, passButton.rect, helpButton.rect]
+    AButton = button.Button(rowD.Xstart - 100, rowA.Ystart, STICK_HEIGHT, STICK_HEIGHT, FONT, "A")
+    BButton = button.Button(rowD.Xstart - 100, rowB.Ystart, STICK_HEIGHT, STICK_HEIGHT, FONT, "B")
+    CButton = button.Button(rowD.Xstart - 100, rowC.Ystart, STICK_HEIGHT, STICK_HEIGHT, FONT, "C")
+    DButton = button.Button(rowD.Xstart - 100, rowD.Ystart, STICK_HEIGHT, STICK_HEIGHT, FONT, "D")
+    passButton = button.Button(rowD.Xend + 50, rowD.Ystart, STICK_HEIGHT, STICK_HEIGHT, FONT, ">")
+    helpButton = button.Button(rowD.Xend + 50, rowA.Ystart, STICK_HEIGHT, STICK_HEIGHT, FONT, "?")
+    buttons = [AButton, BButton, CButton, DButton, passButton, helpButton]
 
     while run:
         for event in pygame.event.get():
