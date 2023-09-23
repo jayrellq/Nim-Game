@@ -77,6 +77,20 @@ def main():
 
                 # pass turn to other player
                 if passButton.click() and currRow != "None":
+                    # win condition
+                    if totalSticks <= 1:
+                        # if one stick left, curr player wins, else if no sticks left, other player wins
+                        if totalSticks == 0:
+                            player = 2 if player == 1 else 1
+
+                        winText = FONT.render(f"Player {int(player)} wins!", 1, "black")
+                        wintTextRect = winText.get_rect(center=(WIDTH/2, HEIGHT/2))
+                        WINDOW.blit(winText,wintTextRect)
+                        pygame.display.update()
+                        pygame.time.delay(4000)
+                        run = False
+                        break
+
                     currRow = "None"
                     player = 2 if player == 1 else 1
 
