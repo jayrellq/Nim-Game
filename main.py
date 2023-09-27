@@ -81,15 +81,16 @@ def main():
                     currRow = "None"
                     player = 2 if player == 1 else 1
 
-                    if totalSticks <= 1:
+                    # player that passes with one stick left wins (other player is forced to remove last stick)
+                    if totalSticks == 1:
                         winCon = 1
 
         totalSticks = rowA.numSticks + rowB.numSticks + rowC.numSticks + rowD.numSticks
         draw(rows, buttons, player)
 
-        if winCon == 1:
-            if totalSticks == 1:
-                player = 2 if player == 1 else 1
+        # win con: leave one stick left or other player removes last stick
+        if winCon == 1 or totalSticks == 0:
+            player = 2 if player == 1 else 1
 
             pygame.time.delay(1000)
             winText = FONT.render(f"Player {int(player)} wins!", 1, "black")
