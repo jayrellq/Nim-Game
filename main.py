@@ -32,6 +32,7 @@ def main():
     run = True
     currRow = "None"
     player = 1
+    winCon = 0
 
     # initialize and create the rows
     rowA = row.Row(1, (WIDTH-STICK_WIDTH)/2, 75)
@@ -77,25 +78,26 @@ def main():
 
                 # pass turn to other player
                 if passButton.click() and currRow != "None":
-                    # win condition
-                    if totalSticks <= 1:
-                        # if one stick left, curr player wins, else if no sticks left, other player wins
-                        if totalSticks == 0:
-                            player = 2 if player == 1 else 1
-
-                        winText = FONT.render(f"Player {int(player)} wins!", 1, "black")
-                        wintTextRect = winText.get_rect(center=(WIDTH/2, HEIGHT/2))
-                        WINDOW.blit(winText,wintTextRect)
-                        pygame.display.update()
-                        pygame.time.delay(4000)
-                        run = False
-                        break
-
                     currRow = "None"
                     player = 2 if player == 1 else 1
 
+                    if totalSticks <= 1:
+                        winCon = 1
+
         totalSticks = rowA.numSticks + rowB.numSticks + rowC.numSticks + rowD.numSticks
         draw(rows, buttons, player)
+
+        if winCon == 1:
+            if totalSticks == 1:
+                player = 2 if player == 1 else 1
+
+            pygame.time.delay(1000)
+            winText = FONT.render(f"Player {int(player)} wins!", 1, "black")
+            wintTextRect = winText.get_rect(center=(WIDTH/2, HEIGHT/2))
+            WINDOW.blit(winText,wintTextRect)
+            pygame.display.update()
+            pygame.time.delay(4000)
+            run = False
 
     pygame.quit()
 
