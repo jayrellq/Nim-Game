@@ -6,6 +6,7 @@ class Row():
     def __init__(self, numSticks, Xmid, Ytop):
         self.arr = []
         self.numSticks = numSticks
+        self.size = numSticks
         self.Xstart = Xmid - (((numSticks-1)/2) * STICK_WIDTH_SPACE)
         self.Xend = self.Xstart + (numSticks-1)*STICK_WIDTH_SPACE + STICK_WIDTH
         self.Ystart = Ytop + (((numSticks-1)/2) * STICK_HEIGHT_SPACE)
@@ -13,6 +14,8 @@ class Row():
 
     # create the sticks for the row
     def createRow(self):
+        self.arr = []
+        self.numSticks = self.size
         tempXstart = self.Xstart
 
         for i in range(self.numSticks):

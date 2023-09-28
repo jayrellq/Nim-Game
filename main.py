@@ -98,7 +98,15 @@ def main():
             WINDOW.blit(winText,wintTextRect)
             pygame.display.update()
             pygame.time.delay(4000)
-            run = False
+            
+            # reset game
+            currRow = "None"
+            player = 1
+            winCon = False
+            rowA.createRow()
+            rowB.createRow()
+            rowC.createRow()
+            rowD.createRow()
 
     pygame.quit()
 
