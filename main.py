@@ -29,11 +29,20 @@ def draw(rows, buttons, player):
 
     pygame.display.update() # refresh display to update any drawings
 
+def drawHelpScreen(button):
+    WINDOW.fill("black")
+
+    pygame.draw.rect(WINDOW, "gray", button.rect)
+    WINDOW.blit(button.text, button.textRect)
+
+    pygame.display.update()
+
 def main():
     run = True
     currRow = "None"
     player = 1
     winCon = False
+    helpScreen = False
 
     # initialize and create the rows
     rowA = row.Row(1, (WIDTH-STICK_WIDTH)/2, 75)
@@ -56,6 +65,7 @@ def main():
     buttons = [AButton, BButton, CButton, DButton, passButton, helpButton]
 
     while run:
+        # check for events
         for event in pygame.event.get():
             # check if window is closed
             if event.type == pygame.QUIT:
@@ -63,31 +73,42 @@ def main():
                 break
             # check for mouse clicks
             if event.type == pygame.MOUSEBUTTONDOWN:
-                # remove stick from row buttons
-                if AButton.click() and rowA.numSticks >= 1 and (currRow == "None" or currRow == "A"):
-                    rowA.removeStick()
-                    currRow = "A"
-                if BButton.click() and rowB.numSticks >= 1 and (currRow == "None" or currRow == "B"):
-                    rowB.removeStick()
-                    currRow = "B"
-                if CButton.click() and rowC.numSticks >= 1 and (currRow == "None" or currRow == "C"):
-                    rowC.removeStick()
-                    currRow = "C"
-                if DButton.click() and rowD.numSticks >= 1 and (currRow == "None" or currRow == "D"):
-                    rowD.removeStick()
-                    currRow = "D"
+                if helpScreen == False:
+                    # remove stick from row buttons
+                    if AButton.click() and rowA.numSticks >= 1 and (currRow == "None" or currRow == "A"):
+                        rowA.removeStick()
+                        currRow = "A"
+                    if BButton.click() and rowB.numSticks >= 1 and (currRow == "None" or currRow == "B"):
+                        rowB.removeStick()
+                        currRow = "B"
+                    if CButton.click() and rowC.numSticks >= 1 and (currRow == "None" or currRow == "C"):
+                        rowC.removeStick()
+                        currRow = "C"
+                    if DButton.click() and rowD.numSticks >= 1 and (currRow == "None" or currRow == "D"):
+                        rowD.removeStick()
+                        currRow = "D"
 
-                # pass turn to other player
-                if passButton.click() and currRow != "None":
-                    currRow = "None"
-                    player = 2 if player == 1 else 1
+                    # pass turn to other player
+                    if passButton.click() and currRow != "None":
+                        currRow = "None"
+                        player = 2 if player == 1 else 1
 
-                    # player that passes with one stick left wins (other player is forced to remove last stick)
-                    if totalSticks == 1:
-                        winCon = True
+                        # player that passes with one stick left wins (other player is forced to remove last stick)
+                        if totalSticks == 1:
+                            winCon = True
 
+                # open help screen
+                if helpButton.click():
+                    helpScreen = True if helpScreen == False else False
+
+        # calculate total number of sticks left
         totalSticks = rowA.numSticks + rowB.numSticks + rowC.numSticks + rowD.numSticks
-        draw(rows, buttons, player)
+
+        # draw the items on the screen
+        if helpScreen:
+            drawHelpScreen(helpButton)
+        else:
+            draw(rows, buttons, player)
 
         # win con: leave one stick left or other player removes last stick
         if winCon == True or totalSticks == 0:
@@ -105,6 +126,7 @@ def main():
             currRow = "None"
             player = 1
             winCon = False
+            helpScreen = False
             rowA.createRow()
             rowB.createRow()
             rowC.createRow()
