@@ -9,6 +9,9 @@ WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("The Game of Nim")
 
 FONT = pygame.font.SysFont("timesnewroman", 30)
+FONT_SMALL = pygame.font.SysFont("timesnewroman", 20)
+
+RULES = pygame.image.load("rules.jpg")
 
 def draw(rows, buttons, player):
     WINDOW.fill("gray") # change background color
@@ -32,15 +35,22 @@ def draw(rows, buttons, player):
 def drawHelpScreen(button):
     WINDOW.fill("black")
 
-    howToPlay = FONT.render("How to Play", 1, "white")
-    howToPlayRect = howToPlay.get_rect(center=(WIDTH/2, 30))
-    WINDOW.blit(howToPlay, howToPlayRect)
+    title = FONT.render("How to Play", 1, "white")
+    titleRect = title.get_rect(center=(WIDTH/2, 30))
+    WINDOW.blit(title, titleRect)
 
+    # display the rules image
+    WINDOW.blit(RULES, (45, 75))
+
+    # draw a white border
     whiteBorder = pygame.Rect(43, 73, 514, 279)
     pygame.draw.rect(WINDOW, "white", whiteBorder, 2)
 
+    # draw the close button
     pygame.draw.rect(WINDOW, "gray", button.rect)
-    WINDOW.blit(button.text, button.textRect)
+    buttonText = FONT.render("X", 1, "black")
+    buttonTextRect = buttonText.get_rect(center=(button.X + button.width/2, button.Y + button.height/2))
+    WINDOW.blit(buttonText, buttonTextRect)
 
     pygame.display.update()
 
