@@ -32,6 +32,13 @@ def draw(rows, buttons, player):
 def drawHelpScreen(button):
     WINDOW.fill("black")
 
+    howToPlay = FONT.render("How to Play", 1, "white")
+    howToPlayRect = howToPlay.get_rect(center=(WIDTH/2, 30))
+    WINDOW.blit(howToPlay, howToPlayRect)
+
+    whiteBorder = pygame.Rect(43, 73, 514, 279)
+    pygame.draw.rect(WINDOW, "white", whiteBorder, 2)
+
     pygame.draw.rect(WINDOW, "gray", button.rect)
     WINDOW.blit(button.text, button.textRect)
 
