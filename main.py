@@ -20,10 +20,11 @@ def draw(rows, buttons, player):
 
     for row in rows:
         for stick in row.arr:
-            pygame.draw.rect(WINDOW, "brown", stick)
+            pygame.draw.rect(WINDOW, "yellow", stick)
 
+    playerColor = "red" if player == 1 else "blue"
     for button in buttons:
-        pygame.draw.rect(WINDOW, "black", button.rect)
+        pygame.draw.rect(WINDOW, playerColor, button.rect)
         WINDOW.blit(button.text, button.textRect)
 
     pygame.display.update() # refresh display to update any drawings
@@ -91,9 +92,10 @@ def main():
         # win con: leave one stick left or other player removes last stick
         if winCon == True or totalSticks == 0:
             player = 2 if player == 1 else 1
+            playerColor = "red" if player == 1 else "blue"
 
             pygame.time.delay(1000)
-            winText = FONT.render(f"Player {int(player)} wins!", 1, "black")
+            winText = FONT.render(f"Player {int(player)} wins!", 1, playerColor)
             wintTextRect = winText.get_rect(center=(WIDTH/2, HEIGHT/2))
             WINDOW.blit(winText,wintTextRect)
             pygame.display.update()
