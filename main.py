@@ -9,7 +9,6 @@ WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("The Game of Nim")
 
 FONT = pygame.font.SysFont("timesnewroman", 30)
-FONT_SMALL = pygame.font.SysFont("timesnewroman", 20)
 
 RULES = pygame.image.load("rules.jpg")
 
