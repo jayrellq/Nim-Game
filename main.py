@@ -63,12 +63,12 @@ def main():
     rows = [rowA, rowB, rowC, rowD]
 
     # initialize and create the buttons
-    AButton = button.Button(rowD.Xstart - 100, rowA.Ystart, STICK_HEIGHT, STICK_HEIGHT, FONT, "A")
-    BButton = button.Button(rowD.Xstart - 100, rowB.Ystart, STICK_HEIGHT, STICK_HEIGHT, FONT, "B")
-    CButton = button.Button(rowD.Xstart - 100, rowC.Ystart, STICK_HEIGHT, STICK_HEIGHT, FONT, "C")
-    DButton = button.Button(rowD.Xstart - 100, rowD.Ystart, STICK_HEIGHT, STICK_HEIGHT, FONT, "D")
-    passButton = button.Button(rowD.Xend + 50, rowD.Ystart, STICK_HEIGHT, STICK_HEIGHT, FONT, ">")
-    helpButton = button.Button(rowD.Xend + 50, rowA.Ystart, STICK_HEIGHT, STICK_HEIGHT, FONT, "?")
+    AButton = button.Button(rowD.Xstart - 100, rowA.Ystart, BUTTON_WIDTH, BUTTON_HEIGHT, FONT, "A")
+    BButton = button.Button(rowD.Xstart - 100, rowB.Ystart, BUTTON_WIDTH, BUTTON_HEIGHT, FONT, "B")
+    CButton = button.Button(rowD.Xstart - 100, rowC.Ystart, BUTTON_WIDTH, BUTTON_HEIGHT, FONT, "C")
+    DButton = button.Button(rowD.Xstart - 100, rowD.Ystart, BUTTON_WIDTH, BUTTON_HEIGHT, FONT, "D")
+    passButton = button.Button(rowD.Xend + 50, rowD.Ystart, BUTTON_WIDTH, BUTTON_HEIGHT, FONT, ">")
+    helpButton = button.Button(rowD.Xend + 50, rowA.Ystart, BUTTON_WIDTH, BUTTON_HEIGHT, FONT, "?")
     buttons = [AButton, BButton, CButton, DButton, passButton, helpButton]
 
     while run:
